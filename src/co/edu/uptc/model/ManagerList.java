@@ -33,7 +33,7 @@ public class ManagerList implements ModelInterface {
     public void showList() {
         Nodo aux = header;
         while (aux != null) {
-            System.out.println(header.value);
+            System.out.println(aux.value);
             aux = aux.sig;
 
         }
