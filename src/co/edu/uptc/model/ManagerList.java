@@ -33,5 +33,7 @@ public class ManagerList {
             aux = aux.sig;
 
         }
+        System.out.println("Este cambio lo hizo Paula Rosas");
     }
+    
 }
