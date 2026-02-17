@@ -1,13 +1,17 @@
 package co.edu.uptc.model;
 
-public class ManagerList {
+import co.edu.uptc.interfaces.ModelInterface;
+
+public class ManagerList implements ModelInterface {
     Nodo header = null;
 
-    private Nodo createNodo(Producto value) {
+    @Override
+    public Nodo createNodo(Producto value) {
         return new Nodo(value);
     }
 
-    private Nodo returnlastNodo() {
+    @Override
+    public Nodo returnLastNodo() {
         Nodo last = header;
         while (last.sig != null) {
             last = last.sig;
@@ -21,7 +25,7 @@ public class ManagerList {
             header = aux;
 
         } else {
-            Nodo ultimo = returnlastNodo();
+            Nodo ultimo = returnLastNodo();
             ultimo.sig = aux;
         }
     }
@@ -34,5 +38,5 @@ public class ManagerList {
 
         }
     }
-    
+
 }
