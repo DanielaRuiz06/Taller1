@@ -13,6 +13,7 @@ public class View implements ViewInterface {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setPresenter'");
     }
+
      private String returnMessage(String message){
         String answer = sc.nextLine();
         return answer;
