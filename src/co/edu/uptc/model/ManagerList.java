@@ -20,7 +20,7 @@ public class ManagerList implements ModelInterface {
     }
 
     public void addEnd(Producto value) {
-        Nodo aux = new Nodo(value);
+        Nodo aux = createNodo(value);
         if (header == null) {
             header = aux;
 
