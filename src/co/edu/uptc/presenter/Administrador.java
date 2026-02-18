@@ -74,7 +74,7 @@ public class Administrador implements PresenterInterface {
                     case 3:
                         break;
                     case 4:
-                        deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR_PRODUCTO));
+                        deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR));
                         break;
 
                     default:
