@@ -106,7 +106,6 @@ public class Administrador implements PresenterInterface {
                     break;
                 case "2":
                     optionSelected = UnidadMedida.LIBRA;
-                    p = 0;
                     break;
 
                 case "3":
