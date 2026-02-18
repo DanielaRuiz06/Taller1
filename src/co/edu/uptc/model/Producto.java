@@ -34,4 +34,13 @@ public class Producto {
     public void setMedida(UnidadMedida medida) {
         this.medida = medida;
     }
+
+    @Override
+    public String toString() {
+        return
+                "[Description='" + description +
+                ", Precio=" + price +
+                ", Unidad de Medida=" + medida +
+                ']';
+    }
 }

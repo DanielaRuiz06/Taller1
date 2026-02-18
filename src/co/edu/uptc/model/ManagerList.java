@@ -38,5 +38,35 @@ public class ManagerList implements ModelInterface {
 
         }
     }
+    public String showList2() {
+        Nodo aux = header;
+        String mensaje = "";
+        int i= 1;
+        while (aux != null) {
+            mensaje += "Producto "+i +":"+ aux.value.toString() + "\n";
+            aux = aux.sig;
+            i++;
+        }
+        return mensaje;
+    }
+
+    public boolean eliminarProducto(String value){
+        boolean isDelete=false;
+        while (header !=null&& value.equalsIgnoreCase(header.value.getDescription())) {
+                isDelete=true;
+            header = header.sig;
+        }
+        Nodo aux = header;
+        while (aux != null && aux.sig!= null) {
+            if (value.equalsIgnoreCase(aux.sig.value.getDescription())){
+                    isDelete=true;
+                aux.sig= aux.sig.sig;
+            } else {
+                aux = aux.sig;
+            }
+
+        }
+        return isDelete;
+    }
 
 }

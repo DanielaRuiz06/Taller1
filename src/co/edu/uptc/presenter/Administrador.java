@@ -41,6 +41,20 @@ public class Administrador implements PresenterInterface {
         return nuevoProducto;
     }
 
+    @Override
+    public void deleteProduct(String description)  {
+        if(!description.equalsIgnoreCase("")){
+            if ( managerList.eliminarProducto(description)){
+                vista.showMessage("El producto "+ description+" fue eliminado exitosamente.");
+            }else {
+                vista.showMessage("El producto "+ description+" no fue encontrado.");
+            }
+        }else {
+            vista.showMessage("Por favor, ingrese una descripcion del producto valida.");
+        }
+    }
+
+
     private void init() {
         try {
             vista.showMessage(Utilities.MENSAJE_BIENVENIDA);
@@ -53,11 +67,14 @@ public class Administrador implements PresenterInterface {
 
                         break;
                     case 2:
-
+                        vista.showMessage("Los productos agregados en la lista son: \n" + managerList.showList2());
+//                        managerList.showList();
                         break;
 
                     case 3:
-
+                        break;
+                    case 4:
+                        deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR_PRODUCTO));
                         break;
 
                     default:
@@ -65,6 +82,7 @@ public class Administrador implements PresenterInterface {
                 }
 
             }
+            vista.showMessage(Utilities.MENSAJE_FINAL);
 
         } catch (Exception e) {
             throw new NumberFormatException("Digite un número");
@@ -74,13 +92,12 @@ public class Administrador implements PresenterInterface {
     }
 
     private UnidadMedida selectUnidadMedida() {
-        String option = vista.showEnum(Utilities.MENSAJE_ENUM);
         UnidadMedida optionSelected = null;
         int p = 1;
         do {
+        String option = vista.showEnum(Utilities.MENSAJE_ENUM);
             switch (option) {
                 case "0":
-
                     p = 0;
                     break;
                 case "1":
@@ -108,9 +125,7 @@ public class Administrador implements PresenterInterface {
 
                 default:
                     vista.showMessage("Opción incorrecta");
-
                     break;
-
             }
 
         } while (p != 0);
@@ -119,7 +134,7 @@ public class Administrador implements PresenterInterface {
     }
 
     private double castToDouble() {
-        String numb = vista.returnMessage("Digite el precio");
+        String numb = vista.returnMessage("Digite el precio:");
         double price = 0;
         try {
             price = Double.parseDouble(numb);

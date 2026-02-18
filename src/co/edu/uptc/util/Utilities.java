@@ -10,5 +10,6 @@ public class Utilities {
             + "0. Cancelar";
 
     public final static String MENSAJE_FINAL = "Gracias por utilizar la aplicacion, lo esperamos pronto ";
+    public final static String MENSAJE_ELIMINAR_PRODUCTO= "Por favor, ingrese la descripcion del producto que desea eliminar:";
 
 }
