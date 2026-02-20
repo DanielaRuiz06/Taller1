@@ -17,18 +17,31 @@ public class View implements ViewInterface {
 
 
      public String returnMessage(String message){
+         System.out.println(message);
         String answer = sc.nextLine();
         return answer;
 
     }
 
-    public String returnMessage(String[] message) {
+    public int menuPrincipal(String[] message) {
+        int answer=0;
         for (String string : message) {
-            System.out.println(string + "\n");
+            System.out.println(string);
 
         }
-
-        String answer = sc.nextLine();
+        boolean aux = true;
+        while (aux) {
+            System.out.println(" opcion: ");
+            try {
+                answer = sc.nextInt();
+                sc.nextLine();
+                aux = false;
+                // sc.nextLine();
+            } catch (Exception e) {
+                System.out.println(" solo numeros");;
+                sc.nextLine();
+            }
+        }
         return answer;
 
     }
@@ -46,4 +59,27 @@ public class View implements ViewInterface {
          message = sc.next();
         return message;
      }
+
+     public double readDouble (String message){
+         double answer=0;
+         System.out.println(message);
+         boolean aux = true;
+         while (aux) {
+             try {
+                 answer = sc.nextDouble();
+                 sc.nextLine();
+                 aux = false;
+                 // sc.nextLine();
+             } catch (Exception e) {
+                 System.out.println(" solo numeros");;
+                 sc.nextLine();
+             }
+         }
+         return answer;
+
+     }
+     public void showErrorMessage(String message){
+        System.err.println(message);
+     }
+
 }

@@ -7,6 +7,6 @@ public interface ModelInterface {
     public Nodo createNodo(Producto value);
     public Nodo returnLastNodo();
     public void addEnd(Producto value);
-    public void showList();
+    public String showList();
 
 }

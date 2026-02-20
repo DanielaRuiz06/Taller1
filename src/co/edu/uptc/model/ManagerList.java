@@ -2,8 +2,12 @@ package co.edu.uptc.model;
 
 import co.edu.uptc.interfaces.ModelInterface;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class ManagerList implements ModelInterface {
     Nodo header = null;
+//    Collections co =new Collection<Nodo>();
 
     @Override
     public Nodo createNodo(Producto value) {
@@ -30,37 +34,38 @@ public class ManagerList implements ModelInterface {
         }
     }
 
-    public void showList() {
-        Nodo aux = header;
-        while (aux != null) {
-            System.out.println(aux.value);
-            aux = aux.sig;
 
-        }
-    }
-    public String showList2() {
+
+    public String showList() {
         Nodo aux = header;
         String mensaje = "";
-        int i= 1;
-        while (aux != null) {
-            mensaje += "Producto "+i +":"+ aux.value.toString() + "\n";
-            aux = aux.sig;
-            i++;
+        if (header != null) {
+
+            int i = 1;
+            while (aux != null) {
+                mensaje += "Producto " + i + ":" + aux.value.toString() + "\n";
+                aux = aux.sig;
+                i++;
+            }
+
+        } else {
+            mensaje = "Aun no hay productos";
         }
+
         return mensaje;
     }
 
-    public boolean eliminarProducto(String value){
-        boolean isDelete=false;
-        while (header !=null&& value.equalsIgnoreCase(header.value.getDescription())) {
-                isDelete=true;
+    public boolean eliminarProducto(String value) {
+        boolean isDelete = false;
+        while (header != null && value.equalsIgnoreCase(header.value.getDescription())) {
+            isDelete = true;
             header = header.sig;
         }
         Nodo aux = header;
-        while (aux != null && aux.sig!= null) {
-            if (value.equalsIgnoreCase(aux.sig.value.getDescription())){
-                    isDelete=true;
-                aux.sig= aux.sig.sig;
+        while (aux != null && aux.sig != null) {
+            if (value.equalsIgnoreCase(aux.sig.value.getDescription())) {
+                isDelete = true;
+                aux.sig = aux.sig.sig;
             } else {
                 aux = aux.sig;
             }
@@ -71,31 +76,31 @@ public class ManagerList implements ModelInterface {
 
     public String organizarLista() {
         String mss = "";
-        
-        
+
+
         Nodo actualNodo = header;
-        if (header != null){
+        if (header != null) {
             boolean cambio;
             do {
-                 cambio = false;
-                
-            
-            while (actualNodo.sig != null) {
-                if (actualNodo.value.getDescription().compareToIgnoreCase(actualNodo.sig.value.getDescription()) > 0) {
-                    String aux = actualNodo.value.getDescription();
-                    actualNodo.value.setDescription(actualNodo.sig.value.getDescription()); 
-                    actualNodo.sig.value.setDescription(aux);
-                    cambio = true;
-                    
-                }else{
-                    actualNodo = actualNodo.sig;
-                }
-             
-            }
- } while (cambio);
-        }else{
+                cambio = false;
+                actualNodo = header;
+                while (actualNodo.sig != null) {
+                    if (actualNodo.value.getDescription().compareToIgnoreCase(actualNodo.sig.value.getDescription()) > 0) {
+                        Producto aux = actualNodo.value;
+                        actualNodo.value = actualNodo.sig.value;
+                        actualNodo.sig.value = aux;
 
-            mss = "No hay productos aún";
+                        cambio = true;
+
+                    } else {
+                        actualNodo = actualNodo.sig;
+                    }
+
+                }
+            } while (cambio);
+        } else {
+
+
         }
         return mss;
 
