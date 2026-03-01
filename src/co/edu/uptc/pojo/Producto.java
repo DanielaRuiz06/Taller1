@@ -41,8 +41,8 @@ public class Producto {
     public String toString() {
         return
                 "[Description='" + description +
-                ", Precio=" + price +
-                ", Unidad de Medida=" + medida +
-                ']';
+                        ", Precio=" + price +
+                        ", Unidad de Medida=" + medida +
+                        ']';
     }
 }

@@ -3,16 +3,13 @@ package co.edu.uptc.model.utils;
 import co.edu.uptc.interfaces.ModelInterface;
 import co.edu.uptc.pojo.Producto;
 
-public class ManagerList implements ModelInterface {
+public class ManagerList  {
     Nodo header = null;
     int size=0;
-//    Collections co =new Collection<Nodo>();
-
 
     public Nodo createNodo(Producto value) {
         return new Nodo(value);
     }
-
 
     public Nodo returnLastNodo() {
         Nodo last = header;
@@ -26,7 +23,6 @@ public class ManagerList implements ModelInterface {
         Nodo aux = createNodo(value);
         if (header == null) {
             header = aux;
-
         } else {
             Nodo ultimo = returnLastNodo();
             ultimo.sig = aux;
@@ -36,17 +32,24 @@ public class ManagerList implements ModelInterface {
 
 
     public int size(){
-        return  size;
+        return  this.size;
     }
 
     public Producto get(int i){
-        Producto p =null;
-
-        // TODO: BUSCAR PRODUCTO
-        return p;
+        return searchNode(i).value;
     }
 
-
+    public Nodo searchNode(int i){
+        int count=0;
+        Nodo aux=null;
+        if(this.size>i|| this.size!=0){
+            while (count!=i){
+                aux= (count==0) ? header : aux.sig;
+                count++;
+            }
+        }
+        return aux;
+    }
 
     public boolean eliminarProducto(String value) {
         boolean isDelete = false;
@@ -62,7 +65,6 @@ public class ManagerList implements ModelInterface {
             } else {
                 aux = aux.sig;
             }
-
         }
         return isDelete;
     }
