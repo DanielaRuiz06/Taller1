@@ -1,4 +1,6 @@
-package co.edu.uptc.model;
+package co.edu.uptc.pojo;
+
+import co.edu.uptc.model.UnidadMedida;
 
 public class Producto {
     private String description;

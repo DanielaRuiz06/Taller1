@@ -1,20 +1,19 @@
-package co.edu.uptc.model;
+package co.edu.uptc.model.utils;
 
 import co.edu.uptc.interfaces.ModelInterface;
-
-import java.util.Collection;
-import java.util.Collections;
+import co.edu.uptc.pojo.Producto;
 
 public class ManagerList implements ModelInterface {
     Nodo header = null;
+    int size=0;
 //    Collections co =new Collection<Nodo>();
 
-    @Override
+
     public Nodo createNodo(Producto value) {
         return new Nodo(value);
     }
 
-    @Override
+
     public Nodo returnLastNodo() {
         Nodo last = header;
         while (last.sig != null) {
@@ -32,28 +31,22 @@ public class ManagerList implements ModelInterface {
             Nodo ultimo = returnLastNodo();
             ultimo.sig = aux;
         }
+        size++;
     }
 
 
-
-    public String showList() {
-        Nodo aux = header;
-        String mensaje = "";
-        if (header != null) {
-
-            int i = 1;
-            while (aux != null) {
-                mensaje += "Producto " + i + ":" + aux.value.toString() + "\n";
-                aux = aux.sig;
-                i++;
-            }
-
-        } else {
-            mensaje = "Aun no hay productos";
-        }
-
-        return mensaje;
+    public int size(){
+        return  size;
     }
+
+    public Producto get(int i){
+        Producto p =null;
+
+        // TODO: BUSCAR PRODUCTO
+        return p;
+    }
+
+
 
     public boolean eliminarProducto(String value) {
         boolean isDelete = false;
@@ -76,8 +69,6 @@ public class ManagerList implements ModelInterface {
 
     public String organizarLista() {
         String mss = "";
-
-
         Nodo actualNodo = header;
         if (header != null) {
             boolean cambio;

@@ -1,12 +1,11 @@
 package co.edu.uptc.interfaces;
 
-import co.edu.uptc.model.Nodo;
-import co.edu.uptc.model.Producto;
+import co.edu.uptc.model.utils.Nodo;
+import co.edu.uptc.pojo.Producto;
+
+import java.util.List;
 
 public interface ModelInterface {
-    public Nodo createNodo(Producto value);
-    public Nodo returnLastNodo();
-    public void addEnd(Producto value);
-    public String showList();
-
+    public void add(Producto p);
+    public List<Producto> getListProduct();
 }
