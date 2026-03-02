@@ -1,21 +1,25 @@
 package co.edu.uptc.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
+import co.edu.uptc.interfaces.PresenterInterface;
+import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.pojo.Producto;
 import co.edu.uptc.presenter.Administrador;
+import co.edu.uptc.util.Utilities;
 
-public class ConsoleView {
+public class ConsoleView implements ViewInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Administrador admin = new Administrador();
+    private PresenterInterface presenter;
 
     public void start() {
         Menu menu = new Menu();
         while (true) {
             int opt = menu.start();
             fillActions(opt);
-
         }
 
     }
@@ -31,8 +35,13 @@ public class ConsoleView {
         }
         ;
     }
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
 
     private void showList() {
+        showMessage( Utilities.MESSAGE_SHOW_LIST);
+        admin.getList().forEach(System.out::println);
     }
 
     public void addProduct() {
@@ -40,17 +49,19 @@ public class ConsoleView {
          
     };
 
-    public void showListProduct (ArrayList<Producto> list){
-        list.forEach(System.out::println);
-    }
 
     private void showOrderedList() {
+       admin.sortList();
+       showList();
     };
 
     private void deleteProduct() {
+        admin.deleteProduct();
     };
 
     private void programExit() {
+        showMessage(Utilities.FINAL_MESSAGE);
+        System.exit(0);
     };
 
     public String readString(String message) {
@@ -79,4 +90,7 @@ public class ConsoleView {
         }
     }
 }
+
+    @Override
+    public void setPresenter(PresenterInterface presenter) {this.presenter= presenter;}
 }

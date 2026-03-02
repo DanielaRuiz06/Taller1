@@ -17,8 +17,13 @@ public class View implements ViewInterface {
         throw new UnsupportedOperationException("Unimplemented method 'setPresenter'");
     }
 
+    @Override
+    public void start() {
 
-     public String returnMessage(String message){
+    }
+
+
+    public String returnMessage(String message){
         showMessage(message);
         return  sc.nextLine();
     }

@@ -11,6 +11,8 @@ import co.edu.uptc.view.ConsoleView;
 import co.edu.uptc.view.View;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Administrador implements PresenterInterface {
     private View vista;
@@ -34,14 +36,13 @@ public class Administrador implements PresenterInterface {
 
     }
 
-    private void showListProduct() {
-        vista.showMessage( Utilities.MESSAGE_SHOW_LIST);
-        consoleView.showListProduct(managerProduct.getListProduct());
+    public ArrayList<Producto> getList(){
+        return (ArrayList<Producto>) managerProduct.getListProduct();
     }
 
     @Override
     public void createProduct() {
-        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"),selectUnidadMedida());
         managerProduct.add(newProduct);
     }
     public void deleteProduct(){
@@ -53,30 +54,11 @@ public class Administrador implements PresenterInterface {
         }
     }
 
-    private UnidadMedida selectUnidadMedida() {
-        boolean isCorrect = true;
-        UnidadMedida optionSelected = null;
-        do {
-            String option = vista.showEnum(Utilities.ENUM_MESSAGE);
-            isCorrect = true;
-            switch (option) {
-                case "1" -> optionSelected = UnidadMedida.TONELADAS;
-                case "2" -> optionSelected = UnidadMedida.LIBRA;
-                case "3" -> optionSelected = UnidadMedida.GRAMOS;
-                case "4" -> optionSelected = UnidadMedida.LITROS;
-                case "5" -> optionSelected = UnidadMedida.MILILITROS;
-                default -> {
-                    vista.showMessage("Opción incorrecta");
-                    isCorrect = false;
-                }
-            }
-        } while (!isCorrect);
-
-        return optionSelected;
+    public void sortList(){
+        Collections.sort(managerProduct.getListProduct(),(o1, o2) -> o1.getDescription().compareToIgnoreCase(o2.getDescription()));
     }
 
-
-    private UnidadMedida selectUnidadMedidaP() {
+    private UnidadMedida selectUnidadMedida() {
         UnidadMedida unidad;
         do {
             unidad = parseUnidad(vista.showEnum(Utilities.ENUM_MESSAGE));
