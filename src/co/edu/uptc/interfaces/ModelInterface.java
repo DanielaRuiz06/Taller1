@@ -1,14 +1,15 @@
 package co.edu.uptc.interfaces;
 
-import co.edu.uptc.model.utils.Nodo;
-import co.edu.uptc.pojo.Producto;
+import co.edu.uptc.pojo.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ModelInterface {
-     void add(Producto p);
+    void add(Product p);
+
     boolean removeProduct(String descriptionProduct);
-     ArrayList<Producto> getListProduct();
-     void sortList();
+
+    ArrayList<Product> getListProduct();
+
+    void sortList();
 }

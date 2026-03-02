@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
-import co.edu.uptc.model.UnidadMedida;
+import co.edu.uptc.model.UnitOfMeasure;
 import co.edu.uptc.util.Utilities;
 
 public class ConsoleView implements ViewInterface {
@@ -91,7 +91,7 @@ public class ConsoleView implements ViewInterface {
     public int showEnum(String message){
         showMessage(message);
         int i =1;
-        for (UnidadMedida u : UnidadMedida.values()){
+        for (UnitOfMeasure u : UnitOfMeasure.values()){
             System.out.println(i+". " + u);
             i++;
         }

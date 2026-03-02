@@ -3,12 +3,11 @@ package co.edu.uptc.presenter;
 import co.edu.uptc.interfaces.ModelInterface;
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
-import co.edu.uptc.pojo.Producto;
-import co.edu.uptc.model.UnidadMedida;
+import co.edu.uptc.pojo.Product;
+import co.edu.uptc.model.UnitOfMeasure;
 import co.edu.uptc.util.Utilities;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Administrador implements PresenterInterface {
     private ViewInterface consoleView;
@@ -24,13 +23,13 @@ public class Administrador implements PresenterInterface {
         this.managerProduct = model;
     }
 
-    public ArrayList<Producto> getList() {
-        return (ArrayList<Producto>) managerProduct.getListProduct();
+    public ArrayList<Product> getList() {
+        return (ArrayList<Product>) managerProduct.getListProduct();
     }
 
     @Override
     public void createProduct() {
-        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        Product newProduct = new Product(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
         managerProduct.add(newProduct);
     }
 
@@ -48,8 +47,8 @@ public class Administrador implements PresenterInterface {
         
     }
 
-    private UnidadMedida selectUnidadMedida() {
-        UnidadMedida unidad;
+    private UnitOfMeasure selectUnidadMedida() {
+        UnitOfMeasure unidad;
         do {
             unidad = parseUnidad(consoleView.showEnum(Utilities.ENUM_MESSAGE));
             if (unidad == null)
@@ -58,13 +57,13 @@ public class Administrador implements PresenterInterface {
         return unidad;
     }
 
-    private UnidadMedida parseUnidad(int option) {
+    private UnitOfMeasure parseUnidad(int option) {
         return switch (option) {
-            case 1 -> UnidadMedida.TONELADAS;
-            case 2 -> UnidadMedida.LIBRA;
-            case 3 -> UnidadMedida.GRAMOS;
-            case 4 -> UnidadMedida.LITROS;
-            case 5 -> UnidadMedida.MILILITROS;
+            case 1 -> UnitOfMeasure.TONELADAS;
+            case 2 -> UnitOfMeasure.LIBRA;
+            case 3 -> UnitOfMeasure.GRAMOS;
+            case 4 -> UnitOfMeasure.LITROS;
+            case 5 -> UnitOfMeasure.MILILITROS;
             default -> null;
         };
     }
