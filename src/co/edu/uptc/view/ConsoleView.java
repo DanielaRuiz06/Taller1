@@ -31,6 +31,7 @@ public class ConsoleView implements ViewInterface {
         }
         ;
     }
+
     public void showMessage(String message) {
         System.out.println(message);
     }
@@ -56,7 +57,11 @@ public class ConsoleView implements ViewInterface {
     };
 
     private void deleteProduct() {
-        admin.deleteProduct();
+        try {
+                    admin.deleteProduct();
+        } catch (Exception e) {
+          showError(e.getMessage());
+        }
     };
 
     private void programExit() {
@@ -66,11 +71,11 @@ public class ConsoleView implements ViewInterface {
 
    private void validarIntentos(int intentos) {
     if (intentos ==0)
-        throw new IllegalStateException("Demasiados intentos inválidos, ERROR AL CREAR EL PRODUCTO");
-
+        throw new IllegalStateException("Demasiados intentos inválidos, ERROR EN EL PROCESO");
+   
 }
 
- public String readStringP(String message) {
+ public String readString(String message) {
     int intentos = 3;
     while (true) {
         System.out.println(message);
@@ -80,17 +85,6 @@ public class ConsoleView implements ViewInterface {
         validarIntentos(intentos);
     }
 }
-
-    public String readString(String message) {
-        String description = "";
-        do {
-            System.out.println(message);
-            description = keyboard.nextLine();
-            if (!description.isEmpty())
-                return description;
-            showError("Este campo no puede estar vacío");
-        } while (true);
-    }
 
 
     public void showError(String message) {
@@ -134,7 +128,7 @@ public class ConsoleView implements ViewInterface {
     public int readInt() {
         int opt = -1;
         try {
-            System.out.println(" Escriba una opcion: ");
+            System.out.println("Escriba una opcion: ");
             String aux = keyboard.nextLine();
             opt = Integer.parseInt(aux);
         } catch (NumberFormatException e) {
