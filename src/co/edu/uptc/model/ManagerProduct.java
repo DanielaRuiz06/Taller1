@@ -30,7 +30,4 @@ public class ManagerProduct  implements ModelInterface {
         listProduct.addEnd(p);
     }
 
-    public void showList() {
-
-    }
 }

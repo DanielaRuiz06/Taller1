@@ -1,10 +1,12 @@
 package co.edu.uptc.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.UnidadMedida;
+import co.edu.uptc.pojo.Producto;
 
 public class View implements ViewInterface {
     private Scanner sc = new Scanner(System.in);
@@ -77,6 +79,9 @@ public class View implements ViewInterface {
          }
          return answer;
 
+     }
+     public void showList (ArrayList<Producto> list){
+        list.forEach(System.out::println);
      }
      public void showErrorMessage(String message){
         System.err.println(message);
