@@ -12,10 +12,10 @@ public class ConsoleView implements ViewInterface {
     private PresenterInterface admin;
 
     public void start() {
-        int opt=-1;
-       do {
-        Menu menu = new Menu();
-         opt = menu.start();
+        int opt = -1;
+        do {
+            Menu menu = new Menu();
+            opt = menu.start();
             fillActions(opt);
 
        } while (opt!=5);
@@ -41,14 +41,18 @@ public class ConsoleView implements ViewInterface {
     }
 
     public void addProduct() {
-        admin.createProduct();
-         
+        try {
+            admin.createProduct();
+        } catch (Exception e) {
+           showError( e.getMessage());
+        }
+
+
     };
 
-
     private void showOrderedList() {
-       admin.sortList();
-       showList();
+        admin.sortList();
+        showList();
     };
 
     private void deleteProduct() {
@@ -60,12 +64,30 @@ public class ConsoleView implements ViewInterface {
         System.exit(0);
     };
 
+   private void validarIntentos(int intentos) {
+    if (intentos ==0)
+        throw new IllegalStateException("Demasiados intentos inválidos, ERROR AL CREAR EL PRODUCTO");
+
+}
+
+ public String readStringP(String message) {
+    int intentos = 3;
+    while (true) {
+        System.out.println(message);
+        String input = keyboard.nextLine();
+        if (!input.isBlank()) return input;
+        showError("Este campo no puede estar vacío, le quedan: "+--intentos + " intentos");
+        validarIntentos(intentos);
+    }
+}
+
     public String readString(String message) {
         String description = "";
         do {
             System.out.println(message);
             description = keyboard.nextLine();
-            if (!description.isEmpty()) return description;    
+            if (!description.isEmpty())
+                return description;
             showError("Este campo no puede estar vacío");
         } while (true);
     }
@@ -76,19 +98,30 @@ public class ConsoleView implements ViewInterface {
         System.err.println(message);
         System.err.println("*******************************************");
     }
-
- public double readDouble(String message) {
-    while (true) {
+/*
+    public double readDouble(String message) {
+        int intento = 3;
+        while (true) {
+            System.out.println(message);
+            try {return Double.parseDouble(keyboard.nextLine()); }
+            catch (NumberFormatException e) {
+                System.err.println("Ingrese un dato válido, le quedan: "+--intento+" intentos");
+                 validarIntentos(intento);
+            }
+        }
+    } */
+   public double readDouble(String message) {
+    for (int i = 3; i > 0; i--) {
         System.out.println(message);
-        try {
-            return Double.parseDouble(keyboard.nextLine());
-        } catch (NumberFormatException e) {
-            System.err.println("Ingrese un dato válido, por favor");
+        try { return Double.parseDouble(keyboard.nextLine()); }
+        catch (NumberFormatException e) {
+            showError("Dato inválido. Intentos restantes: " + (i - 1));
         }
     }
+    throw new IllegalStateException("Demasiados intentos inválidos");
 }
 
-    public int showEnum(String message){
+    public int showEnum(String message) {
         showMessage(message);
         int i =1;
         for (UnitOfMeasure u : UnitOfMeasure.values()){
@@ -99,16 +132,19 @@ public class ConsoleView implements ViewInterface {
     }
 
     public int readInt() {
-    int opt=-1;
+        int opt = -1;
         try {
             System.out.println(" Escriba una opcion: ");
             String aux = keyboard.nextLine();
             opt = Integer.parseInt(aux);
         } catch (NumberFormatException e) {
             System.err.println("Ingrese un dato válido, por favor");
-        }   return opt;
+        }
+        return opt;
     }
 
     @Override
-    public void setPresenter(PresenterInterface presenter) {this.admin= presenter;}
+    public void setPresenter(PresenterInterface presenter) {
+        this.admin = presenter;
+    }
 }

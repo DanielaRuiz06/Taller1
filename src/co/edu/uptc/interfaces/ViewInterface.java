@@ -15,6 +15,7 @@ public interface ViewInterface {
     double readDouble(String message);
 
     int showEnum(String message);
+    String readStringP(String message);
 
 
 }
