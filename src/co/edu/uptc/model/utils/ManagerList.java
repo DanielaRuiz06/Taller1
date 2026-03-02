@@ -51,12 +51,16 @@ public class ManagerList  {
         return aux;
     }
 
-    public boolean eliminarProducto(String value) {
+    public boolean remove(String description) {
+        boolean isDelate= false;
+       if(removeHeader(description) || removeNodo(description)){
+           isDelate = true;
+       }
+        return isDelate;
+    }
+
+    private boolean removeNodo(String value){
         boolean isDelete = false;
-        while (header != null && value.equalsIgnoreCase(header.value.getDescription())) {
-            isDelete = true;
-            header = header.sig;
-        }
         Nodo aux = header;
         while (aux != null && aux.sig != null) {
             if (value.equalsIgnoreCase(aux.sig.value.getDescription())) {
@@ -68,6 +72,16 @@ public class ManagerList  {
         }
         return isDelete;
     }
+
+    private boolean removeHeader(String value){
+        boolean isDelete = false;
+        while (header != null && value.equalsIgnoreCase(header.value.getDescription())) {
+            isDelete = true;
+            header = header.sig;
+        }
+        return isDelete;
+    }
+
 
     public String organizarLista() {
         String mss = "";
