@@ -6,7 +6,6 @@ import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.view.ConsoleView;
 
-import java.io.FileNotFoundException;
 
 public class Runner {
     PresenterInterface presenter;

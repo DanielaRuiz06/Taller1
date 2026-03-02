@@ -41,8 +41,8 @@ public class ManagerList  {
 
     public Nodo searchNode(int i){
         Nodo aux=null;
-        if(this.size>i|| this.size!=0){
-            for (int count = 0; count!=i ; count++){
+        if(this.size>i|| this.size!=-0){
+            for (int count = 0; count!=i+1 ; count++){
                 aux= (count==0) ? header : aux.sig;
             }
         }
@@ -59,6 +59,7 @@ public class ManagerList  {
             if (value.equalsIgnoreCase(aux.sig.value.getDescription())) {
                 isDelete = true;
                 aux.sig = aux.sig.sig;
+                size--;
             }
         }
         return isDelete;
@@ -69,6 +70,7 @@ public class ManagerList  {
         while (header != null && value.equalsIgnoreCase(header.value.getDescription())) {
             isDelete = true;
             header = header.sig;
+            size--;
         }
         return isDelete;
     }

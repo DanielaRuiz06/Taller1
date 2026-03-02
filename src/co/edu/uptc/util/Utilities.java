@@ -8,7 +8,7 @@ public class Utilities {
     public final static String WELCOME_MESSAGE = "Bienvenido usuario!! \nPor favor,ingrese el número de la opción que desea realizar:";
     public final static String ENUM_MESSAGE = "Digite el valor numérico de la opción que desea: " + "\n"
             + "0. Cancelar";
-    public final static String MESSAGE_SHOW_LIST = "Gracias por utilizar la aplicacion, lo esperamos pronto ";
+    public final static String MESSAGE_SHOW_LIST = "Los productos de la lista son: ";
     public final static String FINAL_MESSAGE = "Gracias por utilizar la aplicacion, lo esperamos pronto ";
 
 }
