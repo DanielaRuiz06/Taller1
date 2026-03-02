@@ -40,34 +40,25 @@ public class ManagerList  {
     }
 
     public Nodo searchNode(int i){
-        int count=0;
         Nodo aux=null;
         if(this.size>i|| this.size!=0){
-            while (count!=i){
+            for (int count = 0; count!=i ; count++){
                 aux= (count==0) ? header : aux.sig;
-                count++;
             }
         }
         return aux;
     }
 
     public boolean remove(String description) {
-        boolean isDelate= false;
-       if(removeHeader(description) || removeNodo(description)){
-           isDelate = true;
-       }
-        return isDelate;
+        return removeHeader(description) || removeNodo(description);
     }
 
     private boolean removeNodo(String value){
         boolean isDelete = false;
-        Nodo aux = header;
-        while (aux != null && aux.sig != null) {
+        for (Nodo aux = header; aux != null && aux.sig != null; aux = aux.sig) {
             if (value.equalsIgnoreCase(aux.sig.value.getDescription())) {
                 isDelete = true;
                 aux.sig = aux.sig.sig;
-            } else {
-                aux = aux.sig;
             }
         }
         return isDelete;
@@ -81,7 +72,6 @@ public class ManagerList  {
         }
         return isDelete;
     }
-
 
     public String organizarLista() {
         String mss = "";
