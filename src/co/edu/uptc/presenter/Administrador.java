@@ -35,7 +35,8 @@ public class Administrador implements PresenterInterface {
     }
 
     private void showListProduct() {
-        vista.showMessage( Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
+        vista.showMessage( Utilities.MESSAGE_SHOW_LIST);
+        consoleView.showListProduct(managerProduct.getListProduct());
     }
 
     @Override
