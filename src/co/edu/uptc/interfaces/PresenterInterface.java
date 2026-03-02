@@ -7,5 +7,5 @@ public interface PresenterInterface {
     public void setModel (ModelInterface model);
 
     public void createProduct () throws Exception;
-    public void deleteProduct (String description);
+    public void deleteProduct ();
 }
