@@ -5,7 +5,6 @@ import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.pojo.Producto;
-import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.model.UnidadMedida;
 import co.edu.uptc.model.utils.ManagerList;
 import co.edu.uptc.util.Utilities;
@@ -16,18 +15,13 @@ import javax.swing.*;
 
 public class Administrador implements PresenterInterface {
     private View vista;
-
-    private ManagerList managerList;
     private ConsoleView consoleView;
 
     private ManagerProduct managerProduct;
 
     public Administrador() {
         this.vista = new View();
-
-        this.managerList = new ManagerList();
         this.consoleView = new ConsoleView();
-
         this.managerProduct = new ManagerProduct();
     }
 
@@ -50,14 +44,15 @@ public class Administrador implements PresenterInterface {
 
                 switch (option) {
 
-                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"),
-                            vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
-                    case 2 -> showListProduct();
-                    case 3 ->
-                        vista.showMessage(managerProduct.organizarLista() + "La lista es: " + managerList.showList());
-                    case 4 -> deleteProduct(vista.returnMessage(Utilities.DELETE_MESSAGE));
-                    default -> vista.showMessage("Opcion Invalida!!");
 
+                  
+
+
+                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"), vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
+                    case 2 -> showListProduct();
+                    case 3 ->vista.showMessage(managerProduct.organizarLista() + "La lista es: " + managerList.showList());
+                    case 4  ->deleteProduct(vista.returnMessage(Utilities.DELETE_MESSAGE));
+                    default->  vista.showMessage("Opcion Invalida!!");
                 }
             } catch (Exception e) {
                 vista.showErrorMessage(e.getMessage());
@@ -70,7 +65,7 @@ public class Administrador implements PresenterInterface {
         vista.showMessage(Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
     }
 
-    @Override
+
     public void createProduct(String description, double price, UnidadMedida medida) throws Exception {
 
         Producto nuevoProducto = null;
@@ -85,10 +80,11 @@ public class Administrador implements PresenterInterface {
 
     }
 
-    public void createProductP() {
-        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"),
-                consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
-        managerList.addEnd(newProduct);
+
+    public void createProduct() {
+        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        managerProduct.add(newProduct);
+
     }
 
     public void deleteProduct() {
@@ -113,6 +109,7 @@ public class Administrador implements PresenterInterface {
         }
     }
 
+
     private UnidadMedida selectUnidadMedida() {
         boolean isCorrect = true;
         UnidadMedida optionSelected = null;
@@ -130,11 +127,11 @@ public class Administrador implements PresenterInterface {
                     isCorrect = false;
                 }
             }
-
         } while (!isCorrect);
 
         return optionSelected;
     }
+
 
     private UnidadMedida selectUnidadMedidaP() {
         UnidadMedida unidad;

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerProduct  implements ModelInterface {
-
     ManagerList listProduct = new ManagerList();
 
 
@@ -30,7 +29,4 @@ public class ManagerProduct  implements ModelInterface {
         listProduct.addEnd(p);
     }
 
-    public void showList() {
-
-    }
 }

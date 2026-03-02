@@ -1,10 +1,12 @@
 package co.edu.uptc.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.UnidadMedida;
+import co.edu.uptc.pojo.Producto;
 
 public class View implements ViewInterface {
     private Scanner sc = new Scanner(System.in);
@@ -17,17 +19,14 @@ public class View implements ViewInterface {
 
 
      public String returnMessage(String message){
-         System.out.println(message);
-        String answer = sc.nextLine();
-        return answer;
-
+        showMessage(message);
+        return  sc.nextLine();
     }
 
     public int menuPrincipal(String[] message) {
         int answer=0;
         for (String string : message) {
             System.out.println(string);
-
         }
         boolean aux = true;
         while (aux) {
@@ -43,7 +42,6 @@ public class View implements ViewInterface {
             }
         }
         return answer;
-
     }
 
     public void showMessage(String message) {
@@ -76,8 +74,8 @@ public class View implements ViewInterface {
              }
          }
          return answer;
-
      }
+
      public void showErrorMessage(String message){
         System.err.println(message);
      }
