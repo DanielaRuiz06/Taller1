@@ -15,6 +15,7 @@ import javax.swing.*;
 public class Administrador implements PresenterInterface {
     private View vista;
     private ConsoleView consoleView;
+
     private ManagerProduct managerProduct;
 
     public Administrador() {
@@ -34,8 +35,7 @@ public class Administrador implements PresenterInterface {
     }
 
     private void showListProduct() {
-        vista.showMessage( Utilities.MESSAGE_SHOW_LIST );
-        consoleView.showListProduct(managerProduct.getListProduct());
+        vista.showMessage( Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
     }
 
     @Override
@@ -46,15 +46,15 @@ public class Administrador implements PresenterInterface {
     public void deleteProduct(){
         String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
         if (managerProduct.removeProduct(description)) {
-                vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
-            } else {
-                vista.showMessage("El producto " + description + " no fue encontrado.");
-            }
+            vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
+        } else {
+            vista.showMessage("El producto " + description + " no fue encontrado.");
+        }
     }
 
     private UnidadMedida selectUnidadMedida() {
-            boolean isCorrect = true;
-            UnidadMedida optionSelected = null;
+        boolean isCorrect = true;
+        UnidadMedida optionSelected = null;
         do {
             String option = vista.showEnum(Utilities.ENUM_MESSAGE);
             isCorrect = true;
@@ -74,5 +74,26 @@ public class Administrador implements PresenterInterface {
         return optionSelected;
     }
 
+
+    private UnidadMedida selectUnidadMedidaP() {
+        UnidadMedida unidad;
+        do {
+            unidad = parseUnidad(vista.showEnum(Utilities.ENUM_MESSAGE));
+            if (unidad == null)
+                consoleView.showError("Opción incorrecta");
+        } while (unidad == null);
+        return unidad;
+    }
+
+    private UnidadMedida parseUnidad(String option) {
+        return switch (option) {
+            case "1" -> UnidadMedida.TONELADAS;
+            case "2" -> UnidadMedida.LIBRA;
+            case "3" -> UnidadMedida.GRAMOS;
+            case "4" -> UnidadMedida.LITROS;
+            case "5" -> UnidadMedida.MILILITROS;
+            default -> null;
+        };
+    }
 
 }

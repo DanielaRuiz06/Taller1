@@ -9,7 +9,7 @@ public class Menu {
      private int opt = 0;
 
     public void show() {
-        String[] message = Utilities.MENU_PRINCIPAL;
+        String[] message = Utilities.MAIN_MENU;
         for (String string : message) {
             System.out.println(string);
 
