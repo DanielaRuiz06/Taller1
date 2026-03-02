@@ -30,7 +30,7 @@ public class Administrador implements PresenterInterface {
 
     @Override
     public void createProduct() {
-        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        Producto newProduct = new Producto(consoleView.readStringP("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
         managerProduct.add(newProduct);
     }
 

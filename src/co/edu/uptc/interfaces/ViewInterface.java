@@ -9,6 +9,7 @@ public interface ViewInterface {
     void showError(String message);
     double readDouble(String message);
     int showEnum(String message);
+    String readStringP(String message);
 
 
 }
