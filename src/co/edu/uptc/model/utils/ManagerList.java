@@ -75,33 +75,12 @@ public class ManagerList  {
         return isDelete;
     }
 
-    public String organizarLista() {
-        String mss = "";
-        Nodo actualNodo = header;
-        if (header != null) {
-            boolean cambio;
-            do {
-                cambio = false;
-                actualNodo = header;
-                while (actualNodo.sig != null) {
-                    if (actualNodo.value.getDescription().compareToIgnoreCase(actualNodo.sig.value.getDescription()) > 0) {
-                        Producto aux = actualNodo.value;
-                        actualNodo.value = actualNodo.sig.value;
-                        actualNodo.sig.value = aux;
+    
 
-                        cambio = true;
-
-                    } else {
-                        actualNodo = actualNodo.sig;
-                    }
-
-                }
-            } while (cambio);
-        } else {
-
-
-        }
-        return mss;
+    public void deleteNodos(){
+        header = null;
+        this.size = 0;
+        
 
     }
 

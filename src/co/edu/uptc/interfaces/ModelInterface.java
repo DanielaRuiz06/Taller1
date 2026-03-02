@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ModelInterface {
-    public void add(Producto p);
+     void add(Producto p);
     boolean removeProduct(String descriptionProduct);
-    public ArrayList<Producto> getListProduct();
+     ArrayList<Producto> getListProduct();
+     void sortList();
 }

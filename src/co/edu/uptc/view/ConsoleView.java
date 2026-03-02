@@ -9,7 +9,6 @@ import co.edu.uptc.util.Utilities;
 
 public class ConsoleView implements ViewInterface {
     private Scanner keyboard = new Scanner(System.in);
-//  private Administrador admin;
     private PresenterInterface admin;
 
     public void start() {
@@ -29,7 +28,6 @@ public class ConsoleView implements ViewInterface {
             case 3 -> showOrderedList();
             case 4 -> deleteProduct();
             case 5 -> programExit();
-            default -> System.out.println("Opción inválida");
         }
         ;
     }
@@ -72,6 +70,7 @@ public class ConsoleView implements ViewInterface {
         } while (true);
     }
 
+
     public void showError(String message) {
         System.err.println("*******************************************");
         System.err.println(message);
@@ -84,7 +83,7 @@ public class ConsoleView implements ViewInterface {
         try {
             return Double.parseDouble(keyboard.nextLine());
         } catch (NumberFormatException e) {
-            System.err.println("Solo números 😁");
+            System.err.println("Ingrese un dato válido, por favor");
         }
     }
 }
@@ -106,7 +105,7 @@ public class ConsoleView implements ViewInterface {
             String aux = keyboard.nextLine();
             opt = Integer.parseInt(aux);
         } catch (NumberFormatException e) {
-            System.err.println("Solo numeros 😁");
+            System.err.println("Ingrese un dato válido, por favor");
         }   return opt;
     }
 

@@ -44,7 +44,8 @@ public class Administrador implements PresenterInterface {
     }
 
     public void sortList() {
-        managerProduct.getListProduct().sort((o1, o2) -> o1.getDescription().compareToIgnoreCase(o2.getDescription()));
+        managerProduct.sortList();
+        
     }
 
     private UnidadMedida selectUnidadMedida() {
