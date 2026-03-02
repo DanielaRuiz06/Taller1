@@ -7,6 +7,7 @@ import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.pojo.Producto;
 import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.model.UnidadMedida;
+import co.edu.uptc.model.utils.ManagerList;
 import co.edu.uptc.util.Utilities;
 import co.edu.uptc.view.ConsoleView;
 import co.edu.uptc.view.View;
@@ -49,12 +50,13 @@ public class Administrador implements PresenterInterface {
 
                 switch (option) {
 
-                
-                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"), vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
+                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"),
+                            vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
                     case 2 -> showListProduct();
-                    case 3 ->vista.showMessage(managerProduct.organizarLista() + "La lista es: " + managerList.showList());
-                    case 4  ->deleteProduct(vista.returnMessage(Utilities.DELETE_MESSAGE));
-                    default: vista.showMessage("Opcion Invalida!!");
+                    case 3 ->
+                        vista.showMessage(managerProduct.organizarLista() + "La lista es: " + managerList.showList());
+                    case 4 -> deleteProduct(vista.returnMessage(Utilities.DELETE_MESSAGE));
+                    default -> vista.showMessage("Opcion Invalida!!");
 
                 }
             } catch (Exception e) {
@@ -65,7 +67,7 @@ public class Administrador implements PresenterInterface {
     }
 
     private void showListProduct() {
-        vista.showMessage( Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
+        vista.showMessage(Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
     }
 
     @Override
@@ -84,16 +86,18 @@ public class Administrador implements PresenterInterface {
     }
 
     public void createProductP() {
-        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"),
+                consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
         managerList.addEnd(newProduct);
     }
-    public void deleteProduct(){
+
+    public void deleteProduct() {
         String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
         if (managerProduct.removeProduct(description)) {
-                vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
-            } else {
-                vista.showMessage("El producto " + description + " no fue encontrado.");
-            }
+            vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
+        } else {
+            vista.showMessage("El producto " + description + " no fue encontrado.");
+        }
     }
 
     @Override
@@ -110,8 +114,8 @@ public class Administrador implements PresenterInterface {
     }
 
     private UnidadMedida selectUnidadMedida() {
-            boolean isCorrect = true;
-            UnidadMedida optionSelected = null;
+        boolean isCorrect = true;
+        UnidadMedida optionSelected = null;
         do {
             String option = vista.showEnum(Utilities.ENUM_MESSAGE);
             isCorrect = true;
@@ -130,6 +134,27 @@ public class Administrador implements PresenterInterface {
         } while (!isCorrect);
 
         return optionSelected;
+    }
+
+    private UnidadMedida selectUnidadMedidaP() {
+        UnidadMedida unidad;
+        do {
+            unidad = parseUnidad(vista.showEnum(Utilities.ENUM_MESSAGE));
+            if (unidad == null)
+                consoleView.showError("Opción incorrecta");
+        } while (unidad == null);
+        return unidad;
+    }
+
+    private UnidadMedida parseUnidad(String option) {
+        return switch (option) {
+            case "1" -> UnidadMedida.TONELADAS;
+            case "2" -> UnidadMedida.LIBRA;
+            case "3" -> UnidadMedida.GRAMOS;
+            case "4" -> UnidadMedida.LITROS;
+            case "5" -> UnidadMedida.MILILITROS;
+            default -> null;
+        };
     }
 
 }
