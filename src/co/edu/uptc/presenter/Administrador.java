@@ -5,17 +5,23 @@ import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.utils.ManagerList;
 import co.edu.uptc.pojo.Producto;
+import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.model.UnidadMedida;
 import co.edu.uptc.util.Utilities;
+import co.edu.uptc.view.ConsoleView;
 import co.edu.uptc.view.View;
 
 public class Administrador implements PresenterInterface {
     private View vista;
     private ManagerList managerList;
+    private ConsoleView consoleView;
+    private ManagerProduct managerProduct;
 
     public Administrador() {
         this.vista = new View();
         this.managerList = new ManagerList();
+        this.consoleView = new ConsoleView();
+        this.managerProduct = new ManagerProduct();
     }
 
     @Override
@@ -36,13 +42,16 @@ public class Administrador implements PresenterInterface {
                 option = vista.menuPrincipal(Utilities.MENU_PRINCIPAL);
 
                 switch (option) {
-                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"), vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
+                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"),
+                            vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
                     case 2 ->
-//                            vista.showMessage("Los productos agregados en la lista son: \n" + managerList.showList());
-                       managerList.showList();
-                    case 3 ->vista.showMessage(managerList.organizarLista() + "La lista es: " + managerList.showList());
-                    case 4  ->deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR));
-                    default: vista.showMessage("Opcion Invalida!!");
+                        // vista.showMessage("Los productos agregados en la lista son: \n" +
+                        // managerList.showList());
+                        managerList.showList();
+                    case 3 ->
+                        vista.showMessage(managerList.organizarLista() + "La lista es: " + managerList.showList());
+                    case 4 -> deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR));
+                    default ->vista.showMessage("Opcion Invalida!!");
                 }
             } catch (Exception e) {
                 vista.showErrorMessage(e.getMessage());
@@ -66,6 +75,19 @@ public class Administrador implements PresenterInterface {
 
     }
 
+    public void createProductP() {
+        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        managerList.addEnd(newProduct);
+    }
+    public void deleteProduct(){
+        String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
+        if (managerProduct.removeProduct(description)) {
+                vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
+            } else {
+                vista.showMessage("El producto " + description + " no fue encontrado.");
+            }
+    }
+
     @Override
     public void deleteProduct(String description) {
         if (!description.equalsIgnoreCase("")) {
@@ -78,7 +100,6 @@ public class Administrador implements PresenterInterface {
             vista.showMessage("Por favor, ingrese una descripcion del producto valida.");
         }
     }
-
 
     private UnidadMedida selectUnidadMedida() {
         UnidadMedida optionSelected = null;
@@ -120,12 +141,9 @@ public class Administrador implements PresenterInterface {
                     break;
             }
 
-
         } while (!isCorrect);
-
 
         return optionSelected;
     }
-
 
 }
