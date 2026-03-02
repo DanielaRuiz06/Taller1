@@ -14,18 +14,13 @@ import javax.swing.*;
 
 public class Administrador implements PresenterInterface {
     private View vista;
-
-    private ManagerList managerList;
     private ConsoleView consoleView;
 
     private ManagerProduct managerProduct;
 
     public Administrador() {
         this.vista = new View();
-
-        this.managerList = new ManagerList();
         this.consoleView = new ConsoleView();
-
         this.managerProduct = new ManagerProduct();
     }
 
@@ -65,23 +60,9 @@ public class Administrador implements PresenterInterface {
     }
 
     @Override
-    public void createProduct(String description, double price, UnidadMedida medida) throws Exception {
-
-        Producto nuevoProducto = null;
-        if (price != 0 && medida != null && !description.isEmpty()) {
-            nuevoProducto = new Producto(description, price, medida);
-            managerList.addEnd(nuevoProducto);
-            System.out.println("si se creo el producto");
-        } else {
-            throw new Exception("Error al crear el producto");
-
-        }
-
-    }
-
-    public void createProductP() {
+    public void createProduct() {
         Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
-        managerList.addEnd(newProduct);
+        managerProduct.add(newProduct);
     }
     public void deleteProduct(){
         String description = consoleView.readString("Digite el nombre del producto que desea eliminar");

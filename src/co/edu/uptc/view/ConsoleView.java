@@ -1,7 +1,9 @@
 package co.edu.uptc.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import co.edu.uptc.pojo.Producto;
 import co.edu.uptc.presenter.Administrador;
 
 public class ConsoleView {
@@ -30,13 +32,17 @@ public class ConsoleView {
         ;
     }
 
+    private void showList() {
+    }
+
     public void addProduct() {
-        admin.createProductP();
+        admin.createProduct();
          
     };
 
-    private void showList() {
-    };
+    public void showListProduct (ArrayList<Producto> list){
+        list.forEach(System.out::println);
+    }
 
     private void showOrderedList() {
     };

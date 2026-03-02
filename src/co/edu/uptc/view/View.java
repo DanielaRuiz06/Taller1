@@ -19,17 +19,14 @@ public class View implements ViewInterface {
 
 
      public String returnMessage(String message){
-         System.out.println(message);
-        String answer = sc.nextLine();
-        return answer;
-
+        showMessage(message);
+        return  sc.nextLine();
     }
 
     public int menuPrincipal(String[] message) {
         int answer=0;
         for (String string : message) {
             System.out.println(string);
-
         }
         boolean aux = true;
         while (aux) {
@@ -45,7 +42,6 @@ public class View implements ViewInterface {
             }
         }
         return answer;
-
     }
 
     public void showMessage(String message) {
@@ -78,11 +74,8 @@ public class View implements ViewInterface {
              }
          }
          return answer;
+     }
 
-     }
-     public void showList (ArrayList<Producto> list){
-        list.forEach(System.out::println);
-     }
      public void showErrorMessage(String message){
         System.err.println(message);
      }

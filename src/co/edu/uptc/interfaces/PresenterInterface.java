@@ -6,6 +6,6 @@ public interface PresenterInterface {
     public void setView (ViewInterface view);
     public void setModel (ModelInterface model);
 
-    public void createProduct (String description, double price, UnidadMedida medida ) throws Exception;
+    public void createProduct () throws Exception;
     public void deleteProduct (String description);
 }

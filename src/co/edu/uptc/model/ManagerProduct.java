@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerProduct  implements ModelInterface {
-
     ManagerList listProduct = new ManagerList();
 
 
