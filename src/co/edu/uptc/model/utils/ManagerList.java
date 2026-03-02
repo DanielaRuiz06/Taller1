@@ -57,9 +57,7 @@ public class ManagerList  {
         boolean isDelete = false;
         for (Nodo aux = header; aux != null && aux.sig != null; aux = aux.sig) {
             if (value.equalsIgnoreCase(aux.sig.value.getDescription())) {
-                isDelete = true;
-                aux.sig = aux.sig.sig;
-                size--;
+                isDelete = true; aux.sig = aux.sig.sig; size--;
             }
         }
         return isDelete;
