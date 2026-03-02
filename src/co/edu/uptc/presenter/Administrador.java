@@ -7,16 +7,25 @@ import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.pojo.Producto;
 import co.edu.uptc.model.UnidadMedida;
 import co.edu.uptc.util.Utilities;
+import co.edu.uptc.view.ConsoleView;
 import co.edu.uptc.view.View;
 
 import javax.swing.*;
 
 public class Administrador implements PresenterInterface {
     private View vista;
+
+    private ManagerList managerList;
+    private ConsoleView consoleView;
+
     private ManagerProduct managerProduct;
 
     public Administrador() {
         this.vista = new View();
+
+        this.managerList = new ManagerList();
+        this.consoleView = new ConsoleView();
+
         this.managerProduct = new ManagerProduct();
     }
 
@@ -52,8 +61,7 @@ public class Administrador implements PresenterInterface {
     }
 
     private void showListProduct() {
-        vista.showMessage( Utilities.MESSAGE_SHOW_LIST );
-        vista.showList(managerProduct.getListProduct());
+        vista.showMessage( Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
     }
 
     @Override
@@ -69,6 +77,19 @@ public class Administrador implements PresenterInterface {
 
         }
 
+    }
+
+    public void createProductP() {
+        Producto newProduct = new Producto(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        managerList.addEnd(newProduct);
+    }
+    public void deleteProduct(){
+        String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
+        if (managerProduct.removeProduct(description)) {
+                vista.showMessage("El producto " + description + " fue eliminado exitosamente.");
+            } else {
+                vista.showMessage("El producto " + description + " no fue encontrado.");
+            }
     }
 
     @Override
