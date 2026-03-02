@@ -11,10 +11,10 @@ import java.util.List;
 public class ManagerProduct  implements ModelInterface {
 
     ManagerList listProduct = new ManagerList();
-    ArrayList<Producto> aux = new ArrayList<>();
 
 
     public ArrayList<Producto> getListProduct() {
+    ArrayList<Producto> aux = new ArrayList<>();
         for (int i = 0; i < listProduct.size(); i++) {
             aux.add(listProduct.get(i));
         }
@@ -30,4 +30,7 @@ public class ManagerProduct  implements ModelInterface {
         listProduct.addEnd(p);
     }
 
+    public void showList() {
+
+    }
 }

@@ -3,7 +3,7 @@ package co.edu.uptc.presenter;
 import co.edu.uptc.interfaces.ModelInterface;
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
-import co.edu.uptc.model.utils.ManagerList;
+import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.pojo.Producto;
 import co.edu.uptc.model.ManagerProduct;
 import co.edu.uptc.model.UnidadMedida;
@@ -11,16 +11,22 @@ import co.edu.uptc.util.Utilities;
 import co.edu.uptc.view.ConsoleView;
 import co.edu.uptc.view.View;
 
+import javax.swing.*;
+
 public class Administrador implements PresenterInterface {
     private View vista;
+
     private ManagerList managerList;
     private ConsoleView consoleView;
+
     private ManagerProduct managerProduct;
 
     public Administrador() {
         this.vista = new View();
+
         this.managerList = new ManagerList();
         this.consoleView = new ConsoleView();
+
         this.managerProduct = new ManagerProduct();
     }
 
@@ -35,29 +41,31 @@ public class Administrador implements PresenterInterface {
     }
 
     public void init() {
-        vista.showMessage(Utilities.MENSAJE_BIENVENIDA);
+        vista.showMessage(Utilities.WELCOME_MESSAGE);
         int option = 0;
         do {
             try {
-                option = vista.menuPrincipal(Utilities.MENU_PRINCIPAL);
+                option = vista.menuPrincipal(Utilities.MAIN_MENU);
 
                 switch (option) {
-                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"),
-                            vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
-                    case 2 ->
-                        // vista.showMessage("Los productos agregados en la lista son: \n" +
-                        // managerList.showList());
-                        managerList.showList();
-                    case 3 ->
-                        vista.showMessage(managerList.organizarLista() + "La lista es: " + managerList.showList());
-                    case 4 -> deleteProduct(vista.returnMessage(Utilities.MENSAJE_ELIMINAR));
-                    default ->vista.showMessage("Opcion Invalida!!");
+
+                
+                    case 1 -> createProduct(vista.returnMessage("Digite el nombre del producto"), vista.readDouble("Digite el precio del producto"), selectUnidadMedida());
+                    case 2 -> showListProduct();
+                    case 3 ->vista.showMessage(managerProduct.organizarLista() + "La lista es: " + managerList.showList());
+                    case 4  ->deleteProduct(vista.returnMessage(Utilities.DELETE_MESSAGE));
+                    default: vista.showMessage("Opcion Invalida!!");
+
                 }
             } catch (Exception e) {
                 vista.showErrorMessage(e.getMessage());
             }
         } while (option != 5);
-        vista.showMessage(Utilities.MENSAJE_FINAL);
+        vista.showMessage(Utilities.FINAL_MESSAGE);
+    }
+
+    private void showListProduct() {
+        vista.showMessage( Utilities.MESSAGE_SHOW_LIST + managerProduct.showList());
     }
 
     @Override
@@ -102,43 +110,21 @@ public class Administrador implements PresenterInterface {
     }
 
     private UnidadMedida selectUnidadMedida() {
-        UnidadMedida optionSelected = null;
-        boolean isCorrect = true;
+            boolean isCorrect = true;
+            UnidadMedida optionSelected = null;
         do {
-            String option = vista.showEnum(Utilities.MENSAJE_ENUM);
+            String option = vista.showEnum(Utilities.ENUM_MESSAGE);
             isCorrect = true;
             switch (option) {
-                case "0":
-
-                    break;
-                case "1":
-                    optionSelected = UnidadMedida.TONELADAS;
-
-                    break;
-                case "2":
-                    optionSelected = UnidadMedida.LIBRA;
-
-                    break;
-
-                case "3":
-                    optionSelected = UnidadMedida.GRAMOS;
-
-                    break;
-
-                case "4":
-                    optionSelected = UnidadMedida.LITROS;
-
-                    break;
-                case "5":
-                    optionSelected = UnidadMedida.MILILITROS;
-
-                    break;
-
-                default:
+                case "1" -> optionSelected = UnidadMedida.TONELADAS;
+                case "2" -> optionSelected = UnidadMedida.LIBRA;
+                case "3" -> optionSelected = UnidadMedida.GRAMOS;
+                case "4" -> optionSelected = UnidadMedida.LITROS;
+                case "5" -> optionSelected = UnidadMedida.MILILITROS;
+                default -> {
                     vista.showMessage("Opción incorrecta");
                     isCorrect = false;
-
-                    break;
+                }
             }
 
         } while (!isCorrect);
