@@ -36,9 +36,10 @@ public class Administrador implements PresenterInterface {
     public void deleteProduct() {
         String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
         if (managerProduct.removeProduct(description)) {
-            consoleView.showMessage("El producto " + description + " fue eliminado exitosamente.");
+            consoleView.showMessage("Los siguientes productos fueron eliminados exitosamente.");
+
         } else {
-            consoleView.showMessage("El producto " + description + " no fue encontrado.");
+            consoleView.showMessage("Ningun producto coincide con la busqueda de "+description);
         }
     }
 

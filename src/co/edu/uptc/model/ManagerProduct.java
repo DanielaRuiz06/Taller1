@@ -32,7 +32,10 @@ public class ManagerProduct implements ModelInterface {
 
     public boolean removeProduct(String descriptionProduct) {
         return listProduct.remove(descriptionProduct);
-    }
+ }
+//    public boolean removeProduct(String descriptionProduct) {
+//        return listProduct.remove(descriptionProduct);
+//    }
 
     @Override
     public void add(Product product) {

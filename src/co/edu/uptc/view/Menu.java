@@ -12,11 +12,11 @@ public class Menu {
 
     public void show() {
         String[] message = Utilities.MAIN_MENU;
-        System.err.println("  --------------------------------------------------------------  ");
+        System.out.println("  --------------------------------------------------------------  ");
         for (String string : message) {
             System.out.println(string);
         }
-        System.err.println("  --------------------------------------------------------------  ");
+        System.out.println("  --------------------------------------------------------------  ");
 
 
     }
