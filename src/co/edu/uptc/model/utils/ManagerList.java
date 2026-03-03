@@ -29,7 +29,6 @@ public class ManagerList {
         size++;
     }
 
-
     public int size() {
         return this.size;
     }
@@ -59,6 +58,9 @@ public class ManagerList {
                 isDelete = true;
                 aux.next = aux.next.next;
                 size--;
+            }
+
+        }
         return isDelete;
     }
 
@@ -75,7 +77,6 @@ public class ManagerList {
     public void deleteNodes() {
         header = null;
         this.size = 0;
-        
 
     }
 
