@@ -29,7 +29,6 @@ public class ManagerList {
         size++;
     }
 
-
     public int size() {
         return this.size;
     }
