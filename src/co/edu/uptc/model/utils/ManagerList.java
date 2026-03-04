@@ -51,20 +51,33 @@ public class ManagerList {
     }
 
     public boolean remove(String description) {
-        return removeHeader(description) || removeNode(description)|| removeLastNode(description);
+        return  removeNode(header,header,description);
     }
 
- private boolean removeNode(String value) {
-        boolean isDelete = false;
-        for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
-            if (aux.next.value.getDescription().contains(value)) {
-                isDelete = true;
-                listOfDiscontinuedProducts(aux.next.value);
-                aux.next = aux.next.next;
+ private boolean removeNode(Node aux,Node tmp,String value) {
+        if (aux!=null) {
+            removeNode(aux.next,aux, value);
+            if (aux.value.getDescription().contains(value)){
+                listOfDiscontinuedProducts(aux.value);
+                if (tmp==aux)
+                    header = aux.next;
+                else
+                     tmp.next=aux.next;
                 size--;
             }
         }
-        return isDelete;
+
+/*        for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
+            if (aux.next.value.getDescription().contains(value)) {
+                isDelete = true;
+                listOfDiscontinuedProducts(aux.next.value);
+//                aux.next = aux.next.next;
+                size--;
+            }
+        }
+3
+ */
+        return true;
     }
        
    
@@ -80,7 +93,7 @@ public class ManagerList {
     }
 
     private boolean removeLastNode(String value) {
-        Node aux = searchNode(size-1);
+        Node aux = searchNode(size-2);
         boolean isDelete = false;
             if (aux.next.value.getDescription().contains(value)) {
                 isDelete = true;
