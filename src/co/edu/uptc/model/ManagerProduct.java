@@ -33,8 +33,8 @@ public class ManagerProduct implements ModelInterface {
     public boolean removeProduct(String descriptionProduct) {
         return listProduct.remove(descriptionProduct);
  }
- public ArrayList<Product> getListOfDiscontinuedProfucts(){
-    return listProduct.getListOfDiscontinuedProfucts();
+ public ArrayList<Product> getListOfDiscontinuedProducts(){
+    return listProduct.getListOfDiscontinuedProducts();
     
  }
  public void emptyListOfDiscontinuedProducts(){
