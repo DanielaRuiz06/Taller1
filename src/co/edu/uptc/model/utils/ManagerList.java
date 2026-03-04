@@ -121,7 +121,7 @@ public class ManagerList {
 
     }
 
-    public ArrayList<Product> getListOfDiscontinuedProfucts(){
+    public ArrayList<Product> getListOfDiscontinuedProducts(){
         return listDiscontinuedProducts;
     }
 }
