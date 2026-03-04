@@ -1,12 +1,12 @@
 package co.edu.uptc.view;
 
-import java.util.Scanner;
+
 
 import co.edu.uptc.util.Utilities;
 
 
 public class Menu {
-    private Scanner keyboard = new Scanner(System.in);
+   
      private int opt = 0;
      private ConsoleView consoleView= new ConsoleView();
 

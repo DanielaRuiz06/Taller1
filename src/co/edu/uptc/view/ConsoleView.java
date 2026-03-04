@@ -55,7 +55,7 @@ public class ConsoleView implements ViewInterface {
 
     private void showOrderedList() {
         admin.sortList();
-        showList();
+    
     };
     public void showList(ArrayList <Product> l){
         for (Product product : l) {
@@ -100,18 +100,7 @@ public class ConsoleView implements ViewInterface {
         System.err.println(message);
         System.err.println("*******************************************");
     }
-/*
-    public double readDouble(String message) {
-        int intento = 3;
-        while (true) {
-            System.out.println(message);
-            try {return Double.parseDouble(keyboard.nextLine()); }
-            catch (NumberFormatException e) {
-                System.err.println("Ingrese un dato válido, le quedan: "+--intento+" intentos");
-                 validarIntentos(intento);
-            }
-        }
-    } */
+
    public double readDouble(String message) {
     for (int i = 3; i > 0; i--) {
         System.out.println(message);
