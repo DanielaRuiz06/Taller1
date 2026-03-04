@@ -17,19 +17,19 @@ public class ManagerProduct implements ModelInterface {
         return aux;
     }
 
-    public void sortList() {
+    public ArrayList <Product> sortList() {
         ArrayList<Product> products = getListProduct();
         products.sort((o1, o2) -> o1.getDescription().compareToIgnoreCase(o2.getDescription()));
-        updateNodes(products);
+        return products;
     }
 
-    private void updateNodes(ArrayList<Product> list) {
+   /*  private void updateNodes(ArrayList<Product> list) {
         listProduct.deleteNodes();
         for (Product product : list) {
             listProduct.addEnd(product);
         }
     }
-
+*/
     public boolean removeProduct(String descriptionProduct) {
         return listProduct.remove(descriptionProduct);
  }

@@ -47,7 +47,7 @@ public class Administrador implements PresenterInterface {
     }
 
     public void sortList() {
-        managerProduct.sortList();
+       consoleView.showList((managerProduct.sortList())); 
 
     }
 

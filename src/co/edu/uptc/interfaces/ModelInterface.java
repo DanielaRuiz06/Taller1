@@ -11,7 +11,7 @@ public interface ModelInterface {
 
     ArrayList<Product> getListProduct();
 
-    void sortList();
+    ArrayList<Product> sortList();
     ArrayList<Product> getListOfDiscontinuedProducts();
     void emptyListOfDiscontinuedProducts();
 

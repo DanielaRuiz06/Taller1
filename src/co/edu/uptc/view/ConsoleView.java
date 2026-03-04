@@ -55,7 +55,7 @@ public class ConsoleView implements ViewInterface {
 
     private void showOrderedList() {
         admin.sortList();
-        showList();
+    
     };
     public void showList(ArrayList <Product> l){
         for (Product product : l) {
