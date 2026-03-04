@@ -54,33 +54,6 @@ public class ManagerList {
         return removeHeader(description) || removeNode(description);
     }
 
-    // public String remove(String description) {
-    // return !removeHeader(description).isEmpty() ||
-    // !removeNode(description).isEmpty() ? removeHeader(description) +
-    // removeHeader(description):"";
-    // }
-
-    // private String removeNode(String value) {
-    // String isDelete = "";
-    // for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
-    // if (aux.next.value.getDescription().startsWith(value)) {
-    // isDelete += value.toString() + "\n";
-    // aux.next = aux.next.next;
-    // size--;
-    // }
-    // }
-    // return isDelete;
-    // }
-    //
-    // private String removeHeader(String value) {
-    // String isDelete = "";
-    // while (header != null && header.value.getDescription().startsWith(value)){
-    // isDelete += value.toString() + "\n";
-    // header = header.next;
-    // size--;
-    // }
-    // return isDelete;
-    // }
  private boolean removeNode(String value) {
         boolean isDelete = false;
         for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
