@@ -1,10 +1,12 @@
 package co.edu.uptc.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.UnitOfMeasure;
+import co.edu.uptc.pojo.Product;
 import co.edu.uptc.util.Utilities;
 
 public class ConsoleView implements ViewInterface {
@@ -55,6 +57,12 @@ public class ConsoleView implements ViewInterface {
         admin.sortList();
         showList();
     };
+    public void showList(ArrayList <Product> l){
+        for (Product product : l) {
+            System.out.println(product);
+            
+        }
+    }
 
     private void deleteProduct() {
         try {

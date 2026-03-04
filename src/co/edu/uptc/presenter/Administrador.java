@@ -29,23 +29,26 @@ public class Administrador implements PresenterInterface {
 
     @Override
     public void createProduct() {
-        Product newProduct = new Product(consoleView.readString("Digite el nombre del producto"), consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
+        Product newProduct = new Product(consoleView.readString("Digite el nombre del producto"),
+                consoleView.readDouble("Digite el precio del producto"), selectUnidadMedida());
         managerProduct.add(newProduct);
     }
 
     public void deleteProduct() {
-        String description = consoleView.readString("Digite el nombre del producto que desea eliminar");
+        String description = consoleView.readString("Digite la descripción o parte de esta, de el o los productos que desea eliminar");
         if (managerProduct.removeProduct(description)) {
             consoleView.showMessage("Los siguientes productos fueron eliminados exitosamente.");
+            consoleView.showList((managerProduct.getListOfDiscontinuedProfucts()));
+            managerProduct.emptyListOfDiscontinuedProducts();
 
         } else {
-            consoleView.showMessage("Ningun producto coincide con la busqueda de "+description);
+            consoleView.showMessage("Ningun producto coincide con la busqueda de " + description);
         }
     }
 
     public void sortList() {
         managerProduct.sortList();
-        
+
     }
 
     private UnitOfMeasure selectUnidadMedida() {
