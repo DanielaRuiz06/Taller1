@@ -54,10 +54,7 @@ public class ManagerList {
         return removeHeader(description) || removeNode(description)|| removeLastNode(description);
     }
 
-<<<<<<< HEAD
-   
-=======
->>>>>>> f381c058382d4e2717ce9bd2ff43dbf0257abb63
+
  private boolean removeNode(String value) {
         boolean isDelete = false;
         for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {

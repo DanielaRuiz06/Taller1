@@ -23,13 +23,7 @@ public class ManagerProduct implements ModelInterface {
         return products;
     }
 
-   /*  private void updateNodes(ArrayList<Product> list) {
-        listProduct.deleteNodes();
-        for (Product product : list) {
-            listProduct.addEnd(product);
-        }
-    }
-*/
+
     public boolean removeProduct(String descriptionProduct) {
         return listProduct.remove(descriptionProduct);
  }
@@ -40,9 +34,6 @@ public class ManagerProduct implements ModelInterface {
  public void emptyListOfDiscontinuedProducts(){
     listProduct.emptyList();
  }
-//    public boolean removeProduct(String descriptionProduct) {
-//        return listProduct.remove(descriptionProduct);
-//    }
 
     @Override
     public void add(Product product) {
