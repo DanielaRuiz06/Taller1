@@ -51,10 +51,13 @@ public class ManagerList {
     }
 
     public boolean remove(String description) {
-        return removeHeader(description) || removeNode(description);
+        return removeHeader(description) || removeNode(description)|| removeLastNode(description);
     }
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> f381c058382d4e2717ce9bd2ff43dbf0257abb63
  private boolean removeNode(String value) {
         boolean isDelete = false;
         for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
@@ -79,6 +82,20 @@ public class ManagerList {
         }
         return isDelete;
     }
+
+    private boolean removeLastNode(String value) {
+        Node aux = searchNode(size-1);
+        boolean isDelete = false;
+            if (aux.next.value.getDescription().contains(value)) {
+                isDelete = true;
+                listOfDiscontinuedProducts(aux.next.value);
+                aux.next = null;
+                size--;
+            }
+
+        return isDelete;
+    }
+
 
     private void listOfDiscontinuedProducts(Product producto) {
 
