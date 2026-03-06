@@ -25,4 +25,9 @@ public class Runner {
         makeMVP();
             view.start();
     }
+
+    public static void main(String[] args) {
+        Runner run = new Runner();
+        run.start();
+    }
 }

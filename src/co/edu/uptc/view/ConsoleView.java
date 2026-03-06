@@ -10,7 +10,7 @@ import co.edu.uptc.pojo.Product;
 import co.edu.uptc.util.Utilities;
 
 public class ConsoleView implements ViewInterface {
-    private Scanner keyboard = new Scanner(System.in);
+    private final Scanner keyboard = new Scanner(System.in);
     private PresenterInterface admin;
 
     public void start() {
@@ -20,7 +20,7 @@ public class ConsoleView implements ViewInterface {
             opt = menu.start();
             fillActions(opt);
 
-       } while (opt!=5);
+        } while (opt != 5);
     }
 
     public void fillActions(int option) {
@@ -39,60 +39,72 @@ public class ConsoleView implements ViewInterface {
     }
 
     private void showList() {
-        showMessage( Utilities.MESSAGE_SHOW_LIST);
-        admin.getList().forEach(System.out::println);
+        showMessage(Utilities.MESSAGE_SHOW_LIST);
+        if (!admin.getList().isEmpty())
+            admin.getList().forEach(System.out::println);
+        else
+            showMessage("Aún no hay productos");
     }
 
     public void addProduct() {
         try {
             admin.createProduct();
         } catch (Exception e) {
-           showError( e.getMessage());
+            showError(e.getMessage());
         }
 
 
-    };
+    }
+
+    ;
 
     private void showOrderedList() {
         admin.sortList();
-    
-    };
-    public void showList(ArrayList <Product> l){
+
+    }
+
+    ;
+
+    public void showList(ArrayList<Product> l) {
         for (Product product : l) {
             System.out.println(product);
-            
+
         }
     }
 
     private void deleteProduct() {
         try {
-                    admin.deleteProduct();
+            admin.deleteProduct();
         } catch (Exception e) {
-          showError(e.getMessage());
+            showError(e.getMessage());
         }
-    };
+    }
+
+    ;
 
     private void programExit() {
         showMessage(Utilities.FINAL_MESSAGE);
         System.exit(0);
-    };
-
-   private void validarIntentos(int intentos) {
-    if (intentos ==0)
-        throw new IllegalStateException("Demasiados intentos inválidos, ERROR EN EL PROCESO");
-   
-}
-
- public String readString(String message) {
-    int intentos = 3;
-    while (true) {
-        System.out.println(message);
-        String input = keyboard.nextLine();
-        if (!input.isBlank()) return input;
-        showError("Este campo no puede estar vacío, le quedan: "+--intentos + " intentos");
-        validarIntentos(intentos);
     }
-}
+
+    ;
+
+    private void validarIntentos(int intentos) {
+        if (intentos == 0)
+            throw new IllegalStateException("Demasiados intentos inválidos, ERROR EN EL PROCESO");
+
+    }
+
+    public String readString(String message) {
+        int intentos = 3;
+        while (true) {
+            System.out.println(message);
+            String input = keyboard.nextLine();
+            if (!input.isBlank()) return input;
+            showError("Este campo no puede estar vacío, le quedan: " + --intentos + " intentos");
+            validarIntentos(intentos);
+        }
+    }
 
 
     public void showError(String message) {
@@ -101,22 +113,23 @@ public class ConsoleView implements ViewInterface {
         System.err.println("*******************************************");
     }
 
-   public double readDouble(String message) {
-    for (int i = 3; i > 0; i--) {
-        System.out.println(message);
-        try { return Double.parseDouble(keyboard.nextLine()); }
-        catch (NumberFormatException e) {
-            showError("Dato inválido. Intentos restantes: " + (i - 1));
+    public double readDouble(String message) {
+        for (int i = 3; i > 0; i--) {
+            System.out.println(message);
+            try {
+                return Double.parseDouble(keyboard.nextLine());
+            } catch (NumberFormatException e) {
+                showError("Dato inválido. Intentos restantes: " + (i - 1));
+            }
         }
+        throw new IllegalStateException("Demasiados intentos inválidos");
     }
-    throw new IllegalStateException("Demasiados intentos inválidos");
-}
 
     public int showEnum(String message) {
         showMessage(message);
-        int i =1;
-        for (UnitOfMeasure u : UnitOfMeasure.values()){
-            System.out.println(i+". " + u);
+        int i = 1;
+        for (UnitOfMeasure u : UnitOfMeasure.values()) {
+            System.out.println(i + ". " + u);
             i++;
         }
         return readInt();

@@ -12,7 +12,9 @@ public interface ModelInterface {
     ArrayList<Product> getListProduct();
 
     ArrayList<Product> sortList();
+
     ArrayList<Product> getListOfDiscontinuedProducts();
+
     void emptyListOfDiscontinuedProducts();
 
 }

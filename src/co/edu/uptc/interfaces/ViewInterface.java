@@ -19,7 +19,8 @@ public interface ViewInterface {
     double readDouble(String message);
 
     int showEnum(String message);
-    void showList(ArrayList <Product> l);
+
+    void showList(ArrayList<Product> l);
 
 
 }

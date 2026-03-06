@@ -51,67 +51,30 @@ public class ManagerList {
     }
 
     public boolean remove(String description) {
-        return  removeNode(header,header,description);
+        return removeNode(header, header, description);
     }
 
- private boolean removeNode(Node aux,Node tmp,String value) {
-        if (aux!=null) {
-            removeNode(aux.next,aux, value);
-            if (aux.value.getDescription().contains(value)){
+    private boolean removeNode(Node aux, Node tmp, String value) {
+        if (aux != null) {
+            removeNode(aux.next, aux, value);
+            if (aux.value.getDescription().contains(value)) {
                 listOfDiscontinuedProducts(aux.value);
-                if (tmp==aux)
-                    header = aux.next;
-                else
-                     tmp.next=aux.next;
+                if (tmp == aux) header = aux.next;
+                else tmp.next = aux.next;
                 size--;
-            }
-        }
 
-/*        for (Node aux = header; aux != null && aux.next != null; aux = aux.next) {
-            if (aux.next.value.getDescription().contains(value)) {
-                isDelete = true;
-                listOfDiscontinuedProducts(aux.next.value);
-//                aux.next = aux.next.next;
-                size--;
             }
         }
-3
- */
         return true;
     }
-       
-   
-    private boolean removeHeader(String value) {
-        boolean isDelete = false;
-        while (header != null && header.value.getDescription().contains(value)) {
-            isDelete = true;
-            listOfDiscontinuedProducts(header.value);
-            header = header.next;
-            size--;
-        }
-        return isDelete;
-    }
-
-    private boolean removeLastNode(String value) {
-        Node aux = searchNode(size-2);
-        boolean isDelete = false;
-            if (aux.next.value.getDescription().contains(value)) {
-                isDelete = true;
-                listOfDiscontinuedProducts(aux.next.value);
-                aux.next = null;
-                size--;
-            }
-
-        return isDelete;
-    }
-
 
     private void listOfDiscontinuedProducts(Product producto) {
 
         listDiscontinuedProducts.add(producto);
 
     }
-    public void emptyList(){
+
+    public void emptyList() {
         listDiscontinuedProducts.clear();
     }
 
@@ -121,7 +84,7 @@ public class ManagerList {
 
     }
 
-    public ArrayList<Product> getListOfDiscontinuedProducts(){
+    public ArrayList<Product> getListOfDiscontinuedProducts() {
         return listDiscontinuedProducts;
     }
 }
